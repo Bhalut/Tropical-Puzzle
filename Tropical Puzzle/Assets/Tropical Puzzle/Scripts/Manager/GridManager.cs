@@ -19,6 +19,8 @@ public class GridManager : MonoBehaviour
     public int xSize, ySize;
     public bool IsShifting { get; set; }
 
+    public const int MinToMatch = 2;
+
     private void Awake()
     {
         if (_instance == null)
