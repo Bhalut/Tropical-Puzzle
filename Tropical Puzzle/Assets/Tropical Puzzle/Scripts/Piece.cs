@@ -4,12 +4,12 @@ using UnityEngine;
 public class Piece : MonoBehaviour
 {
     private static Color _selectedColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
-    private static Piece _previousSelected = null;
+    private static Piece _previousSelected;
 
     private SpriteRenderer _spriteRenderer;
-    private bool _isSelected = false;
+    private bool _isSelected;
 
-    private Vector2[] _adjacentDirections = new Vector2[] { Vector2.up, Vector2.down, Vector2.right, Vector2.left };
+    private Vector2[] _adjacentDirections = { Vector2.up, Vector2.down, Vector2.right, Vector2.left };
 
     public int iD;
 
@@ -50,7 +50,9 @@ public class Piece : MonoBehaviour
                 if (CanSwipe())
                 {
                     SwapSprite(_previousSelected);
+                    _previousSelected.FindAllMatches();
                     _previousSelected.DeselectPiece();
+                    FindAllMatches();
                 }
                 else
                 {
@@ -83,18 +85,15 @@ public class Piece : MonoBehaviour
 
     private GameObject GetNeighbor(Vector2 direction)
     {
-        RaycastHit2D hit = Physics2D.Raycast(this.transform.position,
-                                         direction);
+        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, direction);
 
         if (hit.collider != null)
         {
             return hit.collider.gameObject;
-
         }
         else
         {
             return null;
-
         }
     }
 
@@ -113,5 +112,59 @@ public class Piece : MonoBehaviour
     private bool CanSwipe()
     {
         return GetAllNeighbors().Contains(_previousSelected.gameObject);
+    }
+
+    private List<GameObject> FindMatch(Vector2 direction)
+    {
+        List<GameObject> matchingPieces = new List<GameObject>();
+        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, direction);
+
+        while (hit.collider != null && hit.collider.GetComponent<SpriteRenderer>().sprite == _spriteRenderer.sprite)
+        {
+            matchingPieces.Add(hit.collider.gameObject);
+            hit = Physics2D.Raycast(hit.collider.transform.position, direction);
+        }
+
+        return matchingPieces;
+    }
+
+    private bool ClearMatch(Vector2[] directions)
+    {
+        List<GameObject> matchingPieces = new List<GameObject>();
+
+        foreach (var direction in directions)
+        {
+            matchingPieces.AddRange(FindMatch(direction));
+        }
+
+        if (matchingPieces.Count >= GridManager.MinToMatch)
+        {
+            foreach (var piece in matchingPieces)
+            {
+                piece.GetComponent<SpriteRenderer>().sprite = null;
+            }
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void FindAllMatches()
+    {
+        if (_spriteRenderer.sprite == null)
+        {
+            return;
+        }
+
+        bool hMatch = ClearMatch(new Vector2[2] { Vector2.left, Vector2.right });
+        bool vMatch = ClearMatch(new Vector2[2] { Vector2.up, Vector2.down });
+
+        if (hMatch || vMatch)
+        {
+            _spriteRenderer.sprite = null;
+        }
     }
 }
