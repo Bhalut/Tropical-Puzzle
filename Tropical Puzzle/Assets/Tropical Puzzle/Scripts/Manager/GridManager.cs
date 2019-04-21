@@ -42,13 +42,13 @@ public class GridManager : MonoBehaviour
 
         float startX = this.transform.position.x;
         float startY = this.transform.position.y;
+        int idx = -1;
         for (int x = 0; x < xSize; x++)
         {
             for (int y = 0; y < ySize; y++)
             {
                 GameObject newPiece = Instantiate(currentPiece, new Vector2(startX + (offset.x * x), startY + (offset.y * y)), currentPiece.transform.rotation);
                 newPiece.name = $"Piece[{x}][{y}]";
-                int idx;
                 do
                 {
                     idx = Random.Range(0, _prefabs.Count);
