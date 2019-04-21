@@ -53,9 +53,6 @@ public class Piece : MonoBehaviour
                     _previousSelected.FindAllMatches();
                     _previousSelected.DeselectPiece();
                     FindAllMatches();
-
-                    StopCoroutine(GridManager.Instance.FindNullPieces());
-                    StartCoroutine(GridManager.Instance.FindNullPieces());
                 }
                 else
                 {
@@ -155,7 +152,7 @@ public class Piece : MonoBehaviour
         }
     }
 
-    private void FindAllMatches()
+    public void FindAllMatches()
     {
         if (_spriteRenderer.sprite == null)
         {
@@ -168,6 +165,8 @@ public class Piece : MonoBehaviour
         if (hMatch || vMatch)
         {
             _spriteRenderer.sprite = null;
+            StopCoroutine(GridManager.Instance.FindNullPieces());
+            StartCoroutine(GridManager.Instance.FindNullPieces());
         }
     }
 }
