@@ -102,10 +102,33 @@ public class GridManager : MonoBehaviour
             for (int j = 0; j < renderers.Count - 1; j++)
             {
                 renderers[j].sprite = renderers[j + 1].sprite;
-                renderers[j + 1].sprite = null;
+                renderers[j + 1].sprite = GetNewPiece(x, ySize - 1);
             }
         }
 
         IsShifting = false;
+    }
+
+    private Sprite GetNewPiece(int x, int y)
+    {
+        List<Sprite> possiblePieces = new List<Sprite>();
+        possiblePieces.AddRange(_prefabs);
+
+        if (x > 0)
+        {
+            possiblePieces.Remove(_pieces[x - 1, y].GetComponent<SpriteRenderer>().sprite);
+        }
+
+        if (x < xSize - 1)
+        {
+            possiblePieces.Remove(_pieces[x + 1, y].GetComponent<SpriteRenderer>().sprite);
+        }
+
+        if (y > 0)
+        {
+            possiblePieces.Remove(_pieces[x, y - 1].GetComponent<SpriteRenderer>().sprite);
+        }
+
+        return possiblePieces[Random.Range(0, possiblePieces.Count)];
     }
 }
