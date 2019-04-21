@@ -53,6 +53,9 @@ public class Piece : MonoBehaviour
                     _previousSelected.FindAllMatches();
                     _previousSelected.DeselectPiece();
                     FindAllMatches();
+
+                    StopCoroutine(GridManager.Instance.FindNullPieces());
+                    StartCoroutine(GridManager.Instance.FindNullPieces());
                 }
                 else
                 {
