@@ -76,6 +76,14 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
+
+        for (int x = 0; x < xSize; x++)
+        {
+            for (int y = 0; y < ySize; y++)
+            {
+                _pieces[x, y].GetComponent<Piece>().FindAllMatches();
+            }
+        }
     }
 
     private IEnumerator MakePiecesFall(int x, int yStart, float shiftDelay = 0.05f)
