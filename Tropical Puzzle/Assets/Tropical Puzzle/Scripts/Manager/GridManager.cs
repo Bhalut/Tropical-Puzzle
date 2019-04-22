@@ -106,6 +106,8 @@ public class GridManager : MonoBehaviour
 
         for (int i = 0; i < nullPieces; i++)
         {
+            UIManager.Instance.Score += 10;
+
             yield return new WaitForSeconds(shiftDelay);
             for (int j = 0; j < renderers.Count - 1; j++)
             {
