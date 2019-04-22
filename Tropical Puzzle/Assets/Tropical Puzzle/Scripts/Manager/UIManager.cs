@@ -45,6 +45,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+    }
+
     private void Start()
     {
         _score = 0;
