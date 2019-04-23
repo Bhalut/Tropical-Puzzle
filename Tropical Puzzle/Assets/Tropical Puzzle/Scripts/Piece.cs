@@ -69,39 +69,32 @@ public class Piece : MonoBehaviour
         }
     }
 
-    public void SwapSprite(Piece newPiece)
+    private void SwapSprite(Piece newPiece)
     {
         if (_spriteRenderer.sprite == newPiece.GetComponent<SpriteRenderer>().sprite)
         {
             return;
         }
 
-        Sprite oldPiece = newPiece._spriteRenderer.sprite;
+        var oldPiece = newPiece._spriteRenderer.sprite;
         newPiece._spriteRenderer.sprite = this._spriteRenderer.sprite;
         this._spriteRenderer.sprite = oldPiece;
 
-        int tmpID = newPiece.iD;
+        var tmpId = newPiece.iD;
         newPiece.iD = this.iD;
-        this.iD = tmpID;
+        this.iD = tmpId;
     }
 
     private GameObject GetNeighbor(Vector2 direction)
     {
-        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, direction);
+        var hit = Physics2D.Raycast(this.transform.position, direction);
 
-        if (hit.collider != null)
-        {
-            return hit.collider.gameObject;
-        }
-        else
-        {
-            return null;
-        }
+        return hit.collider != null ? hit.collider.gameObject : null;
     }
 
     private List<GameObject> GetAllNeighbors()
     {
-        List<GameObject> neighbors = new List<GameObject>();
+        var neighbors = new List<GameObject>();
 
         foreach (Vector2 direction in _adjacentDirections)
         {
@@ -118,8 +111,8 @@ public class Piece : MonoBehaviour
 
     private List<GameObject> FindMatch(Vector2 direction)
     {
-        List<GameObject> matchingPieces = new List<GameObject>();
-        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, direction);
+        var matchingPieces = new List<GameObject>();
+        var hit = Physics2D.Raycast(this.transform.position, direction);
 
         while (hit.collider != null && hit.collider.GetComponent<SpriteRenderer>().sprite == _spriteRenderer.sprite)
         {
@@ -132,7 +125,7 @@ public class Piece : MonoBehaviour
 
     private bool ClearMatch(Vector2[] directions)
     {
-        List<GameObject> matchingPieces = new List<GameObject>();
+        var matchingPieces = new List<GameObject>();
 
         foreach (var direction in directions)
         {
@@ -161,14 +154,12 @@ public class Piece : MonoBehaviour
             return;
         }
 
-        bool hMatch = ClearMatch(new Vector2[2] { Vector2.left, Vector2.right });
-        bool vMatch = ClearMatch(new Vector2[2] { Vector2.up, Vector2.down });
+        var hMatch = ClearMatch(new Vector2[2] { Vector2.left, Vector2.right });
+        var vMatch = ClearMatch(new Vector2[2] { Vector2.up, Vector2.down });
 
-        if (hMatch || vMatch)
-        {
-            _spriteRenderer.sprite = null;
-            StopCoroutine(GridManager.Instance.FindNullPieces());
-            StartCoroutine(GridManager.Instance.FindNullPieces());
-        }
+        if (!hMatch && !vMatch) return;
+        _spriteRenderer.sprite = null;
+        StopCoroutine(GridManager.Instance.FindNullPieces());
+        StartCoroutine(GridManager.Instance.FindNullPieces());
     }
 }
