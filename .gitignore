@@ -227,3 +227,11 @@ ClientBin/
 *~
 
 # End of https://www.gitignore.io/api/unity,rider,jetbrains,visualstudiocode
+*/.idea/.idea.*/.idea/contentModel.xml
+*/.idea/.idea.*/riderModule.iml
+*/.idea/.idea.*/.idea/workspace.xml
+*/.idea/.idea.*/.idea/vcs.xml
+*/.idea/.idea.*/.idea/modules.xml
+*/.idea/.idea.*/.idea/encodings.xml
+*/.idea/.idea.*/.idea/indexLayout.xml
+*/.idea/.idea.*/.idea/misc.xml
