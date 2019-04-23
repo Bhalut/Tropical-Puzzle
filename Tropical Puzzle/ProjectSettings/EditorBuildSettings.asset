@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Tropical Puzzle/Scenes/Main.unity
+    guid: 2d72df780d48742de932703b3c4fd07d
   m_configObjects: {}
