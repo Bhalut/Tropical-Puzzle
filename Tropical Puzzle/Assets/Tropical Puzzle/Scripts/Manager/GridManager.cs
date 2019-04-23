@@ -32,7 +32,7 @@ public class GridManager : MonoBehaviour
 
     private void Start()
     {
-        Vector2 offset = currentPiece.GetComponent<BoxCollider2D>().size;
+        var offset = currentPiece.GetComponent<BoxCollider2D>().size;
         CreateInitialGrid(offset);
     }
 
@@ -40,21 +40,21 @@ public class GridManager : MonoBehaviour
     {
         _pieces = new GameObject[xSize, ySize];
 
-        float startX = this.transform.position.x;
-        float startY = this.transform.position.y;
-        int idx = -1;
-        for (int x = 0; x < xSize; x++)
+        var startX = this.transform.position.x;
+        var startY = this.transform.position.y;
+        for (var x = 0; x < xSize; x++)
         {
-            for (int y = 0; y < ySize; y++)
+            for (var y = 0; y < ySize; y++)
             {
-                GameObject newPiece = Instantiate(currentPiece, new Vector2(startX + (offset.x * x), startY + (offset.y * y)), currentPiece.transform.rotation);
+                var newPiece = Instantiate(currentPiece, new Vector2(startX + (offset.x * x), startY + (offset.y * y)), currentPiece.transform.rotation);
                 newPiece.name = $"Piece[{x}][{y}]";
+                var idx = -1;
                 do
                 {
                     idx = Random.Range(0, _prefabs.Count);
                 } while ((x > 0 && idx == _pieces[x - 1, y].GetComponent<Piece>().iD) || (y > 0 && idx == _pieces[x, y - 1].GetComponent<Piece>().iD));
 
-                Sprite sprite = _prefabs[idx];
+                var sprite = _prefabs[idx];
                 newPiece.GetComponent<SpriteRenderer>().sprite = sprite;
                 newPiece.GetComponent<Piece>().iD = idx;
                 newPiece.transform.parent = this.transform;
@@ -65,21 +65,19 @@ public class GridManager : MonoBehaviour
 
     public IEnumerator FindNullPieces()
     {
-        for (int x = 0; x < xSize; x++)
+        for (var x = 0; x < xSize; x++)
         {
-            for (int y = 0; y < ySize; y++)
+            for (var y = 0; y < ySize; y++)
             {
-                if (_pieces[x, y].GetComponent<SpriteRenderer>().sprite == null)
-                {
-                    yield return StartCoroutine(MakePiecesFall(x, y));
-                    break;
-                }
+                if (_pieces[x, y].GetComponent<SpriteRenderer>().sprite != null) continue;
+                yield return StartCoroutine(MakePiecesFall(x, y));
+                break;
             }
         }
 
-        for (int x = 0; x < xSize; x++)
+        for (var x = 0; x < xSize; x++)
         {
-            for (int y = 0; y < ySize; y++)
+            for (var y = 0; y < ySize; y++)
             {
                 _pieces[x, y].GetComponent<Piece>().FindAllMatches();
             }
@@ -90,13 +88,13 @@ public class GridManager : MonoBehaviour
     {
         IsShifting = true;
 
-        List<SpriteRenderer> renderers = new List<SpriteRenderer>();
+        var renderers = new List<SpriteRenderer>();
 
-        int nullPieces = 0;
+        var nullPieces = 0;
 
-        for (int y = yStart; y < ySize; y++)
+        for (var y = yStart; y < ySize; y++)
         {
-            SpriteRenderer spriteRenderer = _pieces[x, y].GetComponent<SpriteRenderer>();
+            var spriteRenderer = _pieces[x, y].GetComponent<SpriteRenderer>();
             if (spriteRenderer.sprite == null)
             {
                 nullPieces++;
@@ -104,12 +102,12 @@ public class GridManager : MonoBehaviour
             renderers.Add(spriteRenderer);
         }
 
-        for (int i = 0; i < nullPieces; i++)
+        for (var i = 0; i < nullPieces; i++)
         {
             UIManager.Instance.Score += 10;
 
             yield return new WaitForSeconds(shiftDelay);
-            for (int j = 0; j < renderers.Count - 1; j++)
+            for (var j = 0; j < renderers.Count - 1; j++)
             {
                 renderers[j].sprite = renderers[j + 1].sprite;
                 renderers[j + 1].sprite = GetNewPiece(x, ySize - 1);
@@ -121,7 +119,7 @@ public class GridManager : MonoBehaviour
 
     private Sprite GetNewPiece(int x, int y)
     {
-        List<Sprite> possiblePieces = new List<Sprite>();
+        var possiblePieces = new List<Sprite>();
         possiblePieces.AddRange(_prefabs);
 
         if (x > 0)
