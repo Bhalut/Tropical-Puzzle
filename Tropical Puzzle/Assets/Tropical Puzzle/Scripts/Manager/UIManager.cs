@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour
             if (_moveCounter <= 0)
             {
                 _moveCounter = 0;
-                GameOver();
+                StartCoroutine(GameOver());
             }
             _moveCounter = value;
             moveText.text = $"MOVE: {_moveCounter}";
