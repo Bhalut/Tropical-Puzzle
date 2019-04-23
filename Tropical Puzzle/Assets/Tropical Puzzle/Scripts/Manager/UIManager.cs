@@ -41,14 +41,13 @@ public class UIManager : MonoBehaviour
 
         set
         {
-            _moveCounter = value;
-            moveText.text = $"SCORE: {_moveCounter}";
-
             if (_moveCounter <= 0)
             {
                 _moveCounter = 0;
                 GameOver();
             }
+            _moveCounter = value;
+            moveText.text = $"MOVE: {_moveCounter}";
         }
     }
 
@@ -65,7 +64,7 @@ public class UIManager : MonoBehaviour
         _score = 0;
         _moveCounter = 30;
         scoreText.text = $"SCORE: {_score}";
-        moveText.text = $"SCORE: {_moveCounter}";
+        moveText.text = $"MOVE: {_moveCounter}";
     }
 
     private IEnumerator GameOver()
