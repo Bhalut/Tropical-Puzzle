@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -42,6 +43,12 @@ public class UIManager : MonoBehaviour
         {
             _moveCounter = value;
             moveText.text = $"SCORE: {_moveCounter}";
+
+            if (_moveCounter <= 0)
+            {
+                _moveCounter = 0;
+                GameOver();
+            }
         }
     }
 
@@ -59,5 +66,13 @@ public class UIManager : MonoBehaviour
         _moveCounter = 30;
         scoreText.text = $"SCORE: {_score}";
         moveText.text = $"SCORE: {_moveCounter}";
+    }
+
+    private IEnumerator GameOver()
+    {
+        yield return new WaitUntil(() => !GridManager.Instance.IsShifting);
+        yield return new WaitForSeconds(0.25f);
+
+        //TODO
     }
 }
