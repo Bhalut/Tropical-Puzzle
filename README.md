@@ -3,6 +3,7 @@
 [![twitter](https://img.shields.io/twitter/follow/BhalutCode.svg?style=social)](https://twitter.com/BhalutCode)
 [![MIT license](https://img.shields.io/github/license/bhalut/Tropical-Puzzle.svg)](https://github.com/Bhalut/Tropical-Puzzle/blob/master/LICENSE)
 [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
+<br>
 [![forthebadge](https://forthebadge.com/images/badges/built-for-android.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c-sharp.svg)](https://forthebadge.com)
 
@@ -22,10 +23,11 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-<img src="https://imgur.com/tMZYdYx.png" alt="drawing" width="150"/>
-<img src="https://imgur.com/yQ7Yrs3.png" alt="drawing" width="150"/>
-<img src="https://media.giphy.com/media/8weWzr6gGeS8dcoWro/giphy.gif" alt="drawing" width="130"/>
+![Imagen 1][1]  ![Imagen 2][2]  ![Imagen 3][3]
 
+ [1]: https://imgur.com/tMZYdYx.png 
+ [2]: https://imgur.com/yQ7Yrs3.png 
+ [3]: https://media.giphy.com/media/8weWzr6gGeS8dcoWro/giphy.gif
 
 Tropical Puzzle is a project made in Unity3D for the Android platform, it is a genre Puzzle - Match3
 
