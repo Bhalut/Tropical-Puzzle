@@ -168,7 +168,7 @@ PlayerSettings:
     Android: com.bhalut.tropicalpuzzle
     Standalone: com.Company.ProductName
   buildNumber: {}
-  AndroidBundleVersionCode: 3
+  AndroidBundleVersionCode: 4
   AndroidMinSdkVersion: 21
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
