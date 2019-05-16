@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Tropical Puzzle/Scenes/Menu.unity
+    guid: 7007e3c89d7d64f7f9e0e7d25a04a7bf
+  - enabled: 1
     path: Assets/Tropical Puzzle/Scenes/Main.unity
     guid: 2d72df780d48742de932703b3c4fd07d
+  - enabled: 1
+    path: Assets/Tropical Puzzle/Scenes/Loading.unity
+    guid: 56dfe65955cfb4a4b980d4d6026a61a7
   m_configObjects: {}

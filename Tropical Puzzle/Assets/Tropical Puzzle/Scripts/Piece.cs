@@ -34,38 +34,39 @@ public class Piece : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (_spriteRenderer == null || GridManager.Instance.IsShifting)
+        if (UIManager.Instance.TimerCounter > 0)
         {
-            return;
-        }
-
-        if (!_isSelected)
-        {
-            if (_previousSelected == null)
+            if (_spriteRenderer == null || GridManager.Instance.IsShifting)
             {
-                SelectPiece();
+                return;
             }
-            else
-            {
-                if (CanSwipe())
-                {
-                    SwapSprite(_previousSelected);
-                    _previousSelected.FindAllMatches();
-                    _previousSelected.DeselectPiece();
-                    FindAllMatches();
 
-                    UIManager.Instance.MoveCounter--;
+            if (!_isSelected)
+            {
+                if (_previousSelected == null)
+                {
+                    SelectPiece();
                 }
                 else
                 {
-                    _previousSelected.DeselectPiece();
-                    SelectPiece();
+                    if (CanSwipe())
+                    {
+                        SwapSprite(_previousSelected);
+                        _previousSelected.FindAllMatches();
+                        _previousSelected.DeselectPiece();
+                        FindAllMatches();
+                    }
+                    else
+                    {
+                        _previousSelected.DeselectPiece();
+                        SelectPiece();
+                    }
                 }
             }
-        }
-        else
-        {
-            DeselectPiece();
+            else
+            {
+                DeselectPiece();
+            }
         }
     }
 
