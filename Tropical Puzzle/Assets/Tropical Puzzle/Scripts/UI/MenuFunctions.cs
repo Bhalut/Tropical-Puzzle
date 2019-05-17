@@ -4,12 +4,12 @@ public class MenuFunctions : MonoBehaviour
 {
     public void Play()
     { 
-        SceneLoaderAsync.Instance.LoadScene();
+        SceneLoaderAsync.Instance.LoadScene("Main");
     }
 
     public void Back()
     {
-        StartCoroutine(SceneLoaderAsync.Instance.LoadScenesInOrder("Menu"));
+        SceneLoaderAsync.Instance.LoadScene("Menu");
     }
 
     public void Exit() 

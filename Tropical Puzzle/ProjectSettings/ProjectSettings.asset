@@ -16,13 +16,13 @@ PlayerSettings:
   productName: Tropical Puzzle
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.05882353, g: 0.05882353, b: 0.05882353, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.11058204, g: 0.62863815, b: 0.6698113, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
   m_SplashScreenAnimation: 2
   m_SplashScreenLogoStyle: 1
-  m_SplashScreenDrawMode: 1
+  m_SplashScreenDrawMode: 0
   m_SplashScreenBackgroundAnimationZoom: 0.25
   m_SplashScreenLogoAnimationZoom: 0.5
   m_SplashScreenBackgroundLandscapeAspect: 1
@@ -41,8 +41,6 @@ PlayerSettings:
     height: 1
   m_SplashScreenLogos:
   - logo: {fileID: 21300000, guid: 9d133254bdc2e46a69ef47bd7e9005a2, type: 3}
-    duration: 2
-  - logo: {fileID: 10404, guid: 0000000000000000e000000000000000, type: 0}
     duration: 2
   - logo: {fileID: 21300000, guid: 1d7bb4f9b4f254e89865117ba0b3faa9, type: 3}
     duration: 2
@@ -168,7 +166,7 @@ PlayerSettings:
     Android: com.bhalut.tropicalpuzzle
     Standalone: com.Company.ProductName
   buildNumber: {}
-  AndroidBundleVersionCode: 4
+  AndroidBundleVersionCode: 6
   AndroidMinSdkVersion: 21
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -624,7 +622,7 @@ PlayerSettings:
   scriptingBackend:
     Android: 1
   il2cppCompilerConfiguration:
-    Android: 1
+    Android: 2
   managedStrippingLevel: {}
   incrementalIl2cppBuild: {}
   allowUnsafeCode: 0

@@ -8,10 +8,10 @@ public class SceneLoaderAsync : Singleton<SceneLoaderAsync>
     private float _loadingProgress;
     public float LoadingProgress { get { return _loadingProgress; } }
 
-    public void LoadScene()
+    public void LoadScene(string scene)
     {
         // kick-off the one co-routine to rule them all
-        StartCoroutine(LoadScenesInOrder("Main"));
+        StartCoroutine(LoadScenesInOrder(scene));
     }
 
     public IEnumerator LoadScenesInOrder(string scene)
@@ -22,10 +22,10 @@ public class SceneLoaderAsync : Singleton<SceneLoaderAsync>
         yield return SceneManager.LoadSceneAsync("Loading");
 
         // as soon as we've finished loading the loading screen, start loading the game scene
-        yield return StartCoroutine(LoadScene(scene));
+        yield return StartCoroutine(LoadSceneCoroutine(scene));
     }
 
-    private IEnumerator LoadScene(string sceneName)
+    private IEnumerator LoadSceneCoroutine(string sceneName)
     {
         var asyncScene = SceneManager.LoadSceneAsync(sceneName);
 
