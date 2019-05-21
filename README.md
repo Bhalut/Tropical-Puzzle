@@ -6,6 +6,11 @@
 <br>
 [![forthebadge](https://forthebadge.com/images/badges/built-for-android.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c-sharp.svg)](https://forthebadge.com)
+<br>
+<a href="https://play.google.com/store/apps/details?id=com.bhalut.tropicalpuzzle">
+  <img alt="Get it on Google Play"
+       src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
+</a>
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
